@@ -1,14 +1,17 @@
+import {Link} from "react-router-dom"
 
 
-
-const Recipe = (props) => {
-    const {title, img} = props
+export default function Recipe ({item}) {
+    const {title, image, id, summary} = item
         return(
-            <div>
-                <h2>{title}</h2>
-                <img src={img} alt={title} />
-            </div>
+            <Link to={`/recipe/${id}`}>
+                    
+                <div>
+                    <h2>{title}</h2>
+                    <img src={image} alt={title} />
+                    <button>Details</button>
+                </div>
+            </Link>
         )
 }
 
-export default Recipe
