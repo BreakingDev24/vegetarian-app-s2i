@@ -14,7 +14,7 @@ export default function RecipeDetails(){
             const response = await fetch(url)
             const data = await response.json()
             setRecipe(data)
-            // console.log(recipe)
+            console.log(data)
         };
         fetchRecipeDetails()
     }, [id])
@@ -26,7 +26,7 @@ export default function RecipeDetails(){
                 <div>
                 <h2>{recipe.title}</h2>
                 <img src={recipe.image} alt={recipe.title} />
-                <p>{recipe.summary}</p>
+                <p dangerouslySetInnerHTML={{__html: recipe.summary}}></p>
             </div>
             ) : (<p>Loading</p>
             )}
