@@ -34,7 +34,7 @@ export default function App() {
       <Navbar></Navbar>
       <SearchForm setQuery={setQuery}></SearchForm>
       <Routes>
-        <Route path="/" element={<Home items={recipes}/>}></Route>
+        <Route path="/" element={<Home items={recipes} setQuery={setQuery}/>}></Route>
         <Route path="/recipe/:id" element={<RecipeDetails />}></Route>
         <Route path="/search/:query" element={<SearchResults getRecipes={getRecipes} recipes={recipes}/>}></Route>
       </Routes>
