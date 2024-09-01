@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Recipe from "./components/Recipe";
+import Layout from "./components/Layout";
 import Navbar from "./components/Navbar";
 import SearchForm from "./components/SearchForm";
 import Home from "./components/Home";
@@ -23,23 +24,25 @@ export default function App() {
     const response = await fetch(url);
     const data = await response.json();
     setRecipes(data.results);
-    console.log(recipes);
+    console.log(data);
   };
 
 
   return (
     <>
+    <Layout>
 
-    <BrowserRouter>
-      <Navbar></Navbar>
-      <SearchForm setQuery={setQuery}></SearchForm>
-      <Routes>
-        <Route path="/" element={<Home items={recipes} setQuery={setQuery}/>}></Route>
-        <Route path="/recipe/:id" element={<RecipeDetails />}></Route>
-        <Route path="/search/:query" element={<SearchResults getRecipes={getRecipes} recipes={recipes}/>}></Route>
-      </Routes>
+      <BrowserRouter>
+        <Navbar></Navbar>
+        <SearchForm setQuery={setQuery}></SearchForm>
+        <Routes>
+          <Route path="/" element={<Home items={recipes} setQuery={setQuery}/>}></Route>
+          <Route path="/recipe/:id" element={<RecipeDetails />}></Route>
+          <Route path="/search/:query" element={<SearchResults getRecipes={getRecipes} recipes={recipes}/>}></Route>
+        </Routes>
 
-      </BrowserRouter>
+        </BrowserRouter>
+    </Layout>
     </>
   );
 }
