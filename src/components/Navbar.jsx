@@ -1,11 +1,10 @@
 import { NavLink } from "react-router-dom"
 
-export default function Navbar(props){
-    const {onSubmit, value, onChange} = props
+export default function Navbar(){
     return(
         <>
         <header>
-            <nav>
+            <nav className="navbar"> 
                 <div className="logo">
                     <h2>Logo</h2>
                 </div>

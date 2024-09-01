@@ -6,11 +6,11 @@ export default function RecipeDetails(){
     const {id} = useParams();
     const [recipe, setRecipe] = useState(null)
 
-    const apiKey = import.meta.env.VITE_API_KEY
-    const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
-
+    
     useEffect(() => {
         const fetchRecipeDetails = async ()=>{
+            const apiKey = import.meta.env.VITE_API_KEY
+            const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
             const response = await fetch(url)
             const data = await response.json()
             setRecipe(data)
