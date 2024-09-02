@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import Recipe from "./components/Recipe";
-import Layout from "./components/Layout";
-import Navbar from "./components/Navbar";
-import SearchForm from "./components/SearchForm";
-import Home from "./components/Home";
-import RecipeDetails from "./components/RecipeDetails";
-import SearchResults from "./components/SearchResults";
+import Recipe from "./components/Recipe/Recipe";
+import Layout from "./components/Layout/Layout";
+import Navbar from "./components/Navbar/Navbar";
+import SearchForm from "./components/SearchForm/SearchForm";
+import Home from "./components/Home/Home";
+import RecipeDetails from "./components/RecipeDetails/RecipeDetails";
+import SearchResults from "./components/SearchResults/SearchResults";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 

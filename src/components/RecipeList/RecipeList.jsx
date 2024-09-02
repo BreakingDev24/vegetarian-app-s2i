@@ -1,4 +1,4 @@
-import Recipe from "./Recipe";
+import Recipe from "../Recipe/Recipe";
 
 export default function RecipeList(props){
     const {items, title} = props

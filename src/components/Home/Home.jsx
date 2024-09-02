@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import RecipeList
- from "./RecipeList"
+ from "../RecipeList/RecipeList"
 export default function Home(props){
     const {items, setQuery} = props
     

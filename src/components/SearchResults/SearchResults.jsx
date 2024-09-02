@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import RecipeList from "./RecipeList";
+import RecipeList from "../RecipeList/RecipeList";
 
 export default function SearchResults(props){
     const {getRecipes, recipes} = props
