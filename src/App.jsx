@@ -6,6 +6,7 @@ import SearchForm from "./components/SearchForm/SearchForm";
 import Home from "./components/Home/Home";
 import RecipeDetails from "./components/RecipeDetails/RecipeDetails";
 import SearchResults from "./components/SearchResults/SearchResults";
+import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 
@@ -40,9 +41,9 @@ export default function App() {
           <Route path="/recipe/:id" element={<RecipeDetails />}></Route>
           <Route path="/search/:query" element={<SearchResults getRecipes={getRecipes} recipes={recipes}/>}></Route>
         </Routes>
-
         </BrowserRouter>
     </Layout>
+    <Footer/>
     </>
   );
 }
