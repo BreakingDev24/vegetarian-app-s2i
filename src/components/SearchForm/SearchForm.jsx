@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import style from './SearchForm.module.css'
 
 export default function SearchForm({setQuery}){
     const [search, setSearch] = useState("")
@@ -16,15 +17,15 @@ export default function SearchForm({setQuery}){
     return (
         <>
             <section>
-                <form className="search-form" onSubmit={getSearch}>
+                <form className={style["search-form"]} onSubmit={getSearch}>
                     <input
-                    className="search-input"
+                    className={style["search-input"]}
                     type="text"
                     placeholder="ingredients"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     />
-                    <button className="search-btn" type="submit">
+                    <button className={style["search-btn"]} type="submit">
                     Search
                     </button>
                 </form>
