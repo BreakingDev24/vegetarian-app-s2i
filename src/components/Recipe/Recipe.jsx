@@ -1,21 +1,28 @@
 import {Link} from "react-router-dom";
-import RecipeCSS from './Recipe.module.css'
+import style from './Recipe.module.css'
 
 export default function Recipe ({item}) {
-    const {title, image, id, readyInMinutes} = item
+    const {title, image, id, summary, readyInMinutes} = item
         return(
                
-                <div className={RecipeCSS['recipe-card']}>
+                <div className={style['recipe-card']}>
                     <img src={image} alt={title} />
-                    <div className={RecipeCSS['recipe-info']}>
-                    <Link to={`/recipe/${id}`} className={RecipeCSS['recipe-title']}>
-                        <h2>{title}</h2>
-                    </Link>
-                        <p className={RecipeCSS['recipe-time']}><span><i className="bi bi-clock"></i></span> {readyInMinutes} min</p>
-                    <Link to={`/recipe/${id}`} className={RecipeCSS['show-details']}>
-                        <span>Details</span>
-                        <span><i className="bi bi-caret-right"></i></span>
-                    </Link>
+                    <div className={style['recipe-info']}>
+                        <Link to={`/recipe/${id}`} className={style['recipe-title']}>
+                            <h2>{title}</h2>
+                        </Link>
+
+                        <p dangerouslySetInnerHTML={{__html: summary}} className={style.summary}>
+                            
+                        </p>
+
+                        <div className={style['recipe-bottom']}>
+                            <p className={style['recipe-time']}><span><i className="bi bi-clock"></i></span> {readyInMinutes} min</p>
+                            <Link to={`/recipe/${id}`} className={style['show-details']}>
+                                <span>Details</span>
+                                <span><i className="bi bi-caret-right"></i></span>
+                            </Link>
+                        </div>
                     </div>
                 </div>
        
