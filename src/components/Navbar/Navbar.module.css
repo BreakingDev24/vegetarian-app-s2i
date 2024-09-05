@@ -1,0 +1,26 @@
+.nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px !important;
+    background-color: rgb(83, 74, 88);
+    box-shadow: 2px 10px 15px -5px rgba(0,0,0,0.47);
+}
+
+.logo-container{
+    width: 100px;
+}
+
+.logo-container img {
+    width: 100%;
+}
+
+.activeLink {
+    font-weight: bold;
+    color: rgb(115, 128, 111);
+}
+.activeLink:link{
+    text-decoration: underline;
+}
+
