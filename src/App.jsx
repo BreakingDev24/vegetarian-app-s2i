@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import Recipe from "./components/Recipe/Recipe";
 import Layout from "./components/Layout/Layout";
 import Navbar from "./components/Navbar/Navbar";
@@ -7,13 +8,14 @@ import Home from "./components/Home/Home";
 import RecipeDetails from "./components/RecipeDetails/RecipeDetails";
 import SearchResults from "./components/SearchResults/SearchResults";
 import Footer from "./components/Footer/Footer";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import ErrorPage from "./components/errorPage/errorPage";
 import "./App.css";
 
-export default function App() {
+function AppContent() {
   const [recipes, setRecipes] = useState([]);
   const [query, setQuery] = useState("");
-
+  const navigate = useNavigate()
+  const location = useLocation()
   const apiKey = import.meta.env.VITE_API_KEY;
   
   useEffect(() => {
@@ -21,29 +23,53 @@ export default function App() {
   }, [query]);
   
   const getRecipes = async () => {
-    const url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&diet=vegetarian&addRecipeInformation=true&apiKey=${apiKey}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    setRecipes(data.results);
-    console.log(data);
+    try {
+      const url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&diet=vegetarian&addRecipeInformation=true&apiKey=fa`;
+      const response = await fetch(url);
+      const data = await response.json();
+      // console.log(data)
+      if(data.status === "failure"){
+        throw new Error(data.message);
+      }
+      setRecipes(data.results);
+
+    } catch (err) {
+      console.log(err)
+      navigate(`/error/${encodeURIComponent()}`, { state: { errorMessage: err.message }})
+    }
   };
 
-
+  const isErrorPage = location.pathname.startsWith("/error");
   return (
     <>
-    <Layout>
+      <Layout>
+        {
+          !isErrorPage && (
+          <>
 
-      <BrowserRouter>
-        <Navbar></Navbar>
-        <SearchForm setQuery={setQuery}></SearchForm>
+            <Navbar></Navbar>
+            <SearchForm setQuery={setQuery}></SearchForm>
+          
+          </>
+          )
+        }
         <Routes>
           <Route path="/" element={<Home items={recipes} setQuery={setQuery}/>}></Route>
           <Route path="/recipe/:id" element={<RecipeDetails />}></Route>
           <Route path="/search/:query" element={<SearchResults getRecipes={getRecipes} recipes={recipes}/>}></Route>
+          <Route path="/error/:errorMessage" element={<ErrorPage />} />
         </Routes>
-        </BrowserRouter>
-    </Layout>
-    <Footer/>
+      </Layout>
+
+     {!isErrorPage && <Footer/>}
     </>
   );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppContent/>
+    </BrowserRouter>
+  )
 }
