@@ -8,10 +8,13 @@ export default function SearchForm({setQuery}){
 
     const getSearch = (e) => {
         e.preventDefault();
-        setQuery(search)
+
+        const trimmedSearch = search.trim()
+
+        setQuery(trimmedSearch)
         setSearch("")
 
-        navigate(`/search/${search}`)
+        navigate(`/search/${trimmedSearch}`)
     }
 
     return (
