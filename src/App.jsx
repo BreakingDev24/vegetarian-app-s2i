@@ -24,18 +24,44 @@ function AppContent() {
   
   const getRecipes = async () => {
     try {
-      const url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&diet=vegetarian&addRecipeInformation=true&apiKey=fa`;
+
+      // throw new Error('404: resource not found')
+
+      const url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&diet=vegetarian&addRecipeInformation=true&apiKey=${apiKey}`;
       const response = await fetch(url);
+      if (!response.ok) {
+        let errorMessage = ''
+        switch(response.status){
+          case 404:
+            errorMessage = "404: Recipes not found. Try looking for something else.";
+              break;
+          case 402:
+            errorMessage = "402: Too many requests for today. Try again tomorrow";
+              break;
+          case 401:
+            errorMessage = "401: Invalid API key. Check your API key configuration";
+              break;
+          case 500:
+            errorMessage = "500: Server error. Please try again later.";
+              break;
+          default:
+            errorMessage = `Errore sconosciuto! Status: ${response.status}`;
+              break;
+                      
+        }
+        throw new Error(errorMessage)
+      }
+
       const data = await response.json();
       // console.log(data)
-      if(data.status === "failure"){
-        throw new Error(data.message);
-      }
+      // if(data.status === "failure"){
+      //   throw new Error(data.message);
+      // }
       setRecipes(data.results);
 
     } catch (err) {
-      console.log(err)
-      navigate(`/error/${encodeURIComponent()}`, { state: { errorMessage: err.message }})
+      console.log(err.message)
+      navigate(`/error/${encodeURIComponent(err.message)}`, { state: { errorMessage: err.message || err}})
     }
   };
 
