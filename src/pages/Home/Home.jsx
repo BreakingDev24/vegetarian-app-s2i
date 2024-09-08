@@ -1,18 +1,18 @@
-import { useEffect } from "react"
-import RecipeList
- from "../../components/RecipeList/RecipeList"
-export default function Home(props){
-    const {items, setQuery} = props
-    
-    useEffect(()=>{
-      setQuery("")
-    }, [setQuery])
+import { useEffect, useContext } from "react";
+import Spinner from "../../components/Spinner/Spinner";
+import RecipeList from "../../components/RecipeList/RecipeList";
+import { RecipeContext } from "../../components/context/DataRecipeProvider";
 
-    return(
+export default function Home(props) {
+  const { recipes, loading, error } = useContext(RecipeContext);
+
+  if (loading) return <Spinner />;
+
+  return (
     <>
       <main>
-        <RecipeList items={items} title="Popular"/>
+        <RecipeList items={recipes} title="Popular" />
       </main>
-        </>
-    )
+    </>
+  );
 }
