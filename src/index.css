@@ -1,3 +1,24 @@
+/* VARIABLES */
+
+:root {
+    --bg-primary-color: rgb(202, 221, 185);
+    --bg-sencodary-color: rgb(53, 34, 70);
+    --bg-tertiary-color: rgb(1, 22, 1);
+
+
+    --bg-navbar-color: rgb(83, 74, 88);
+    --bg-card-color: rgb(53, 34, 70);
+
+    --navlink-active-color: rgb(115, 128, 111);
+
+    --text-primary-color: white;
+    --text-card-summary-color: rgb(174, 133, 184);
+    --icon-link-color: rgb(202, 221, 185);
+
+    --text-info-color: rgb(161, 158, 158);
+}
+
+/* DEFAULT STYLE */
 
 * {
     padding: 0;
@@ -6,7 +27,7 @@
 }
 
 body{
-    background-color: rgb(202, 221, 185) !important;
+    background-color: var(--bg-primary-color);
 }
 
 .container {
