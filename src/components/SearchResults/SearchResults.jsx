@@ -1,14 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import RecipeList from "../RecipeList/RecipeList";
+import { RecipeContext } from "../context/DataRecipeProvider";
 
-export default function SearchResults(props){
-    const {getRecipes, recipes} = props
+export default function SearchResults(){
+    const {recipes, loading, error} = useContext(RecipeContext)
     const {query} = useParams()
 
-    useEffect(()=>{
-        getRecipes(query)
-    }, [query])
+    if (loading) return <p>Loading...</p>
 
     return (
         <main>
