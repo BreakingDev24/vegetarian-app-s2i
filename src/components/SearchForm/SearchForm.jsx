@@ -1,20 +1,22 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import style from './SearchForm.module.css'
+import { RecipeContext } from "../context/DataRecipeProvider";
 
-export default function SearchForm({setQuery}){
-    const [search, setSearch] = useState("")
+export default function SearchForm(){
+    const { setQuery } = useContext(RecipeContext)
+    const [inputValue, setInputValue] = useState("")
     const navigate = useNavigate()
 
     const getSearch = (e) => {
         e.preventDefault();
 
-        const trimmedSearch = search.trim()
+        const trimmedInput = inputValue.trim()
 
-        setQuery(trimmedSearch)
-        setSearch("")
+        setQuery(trimmedInput)
+        setInputValue("")
 
-        navigate(`/search/${trimmedSearch}`)
+        navigate(`/search/${trimmedInput}`)
     }
 
     return (
@@ -25,8 +27,8 @@ export default function SearchForm({setQuery}){
                     className={style["search-input"]}
                     type="text"
                     placeholder="ingredients"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
                     />
                     <button className={style["search-btn"]} type="submit">
                     Search
