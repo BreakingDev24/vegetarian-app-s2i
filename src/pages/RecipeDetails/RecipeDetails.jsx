@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
 import { useParams } from "react-router-dom";
 import DetailCSS from "./RecipeDetails.module.css";
@@ -7,14 +8,9 @@ import { useFetch } from "../../components/hook/useFetch";
 export default function RecipeDetails() {
   const { id } = useParams();
   const apiKey = import.meta.env.VITE_API_KEY;
-
-  const {
-    data: recipe,
-    loading,
-    error,
-  } = useFetch(
-    `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`
-  );
+  const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
+  const navigate = useNavigate();
+  const { data: recipe, loading, error } = useFetch(url, navigate);
 
   if (loading) return <Spinner />;
   if (!recipe) return <Spinner />;
