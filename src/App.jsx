@@ -4,12 +4,12 @@ import { RecipeContext, RecipeProvider } from "./components/context/DataRecipePr
 import Recipe from "./components/Recipe/Recipe";
 import Layout from "./components/Layout/Layout";
 import Navbar from "./components/Navbar/Navbar";
+import Home from "./pages/Home/Home";
 import SearchForm from "./components/SearchForm/SearchForm";
-import Home from "./components/Home/Home";
-import RecipeDetails from "./components/RecipeDetails/RecipeDetails";
-import SearchResults from "./components/SearchResults/SearchResults";
+import RecipeDetails from "./pages/RecipeDetails/RecipeDetails";
+import SearchResults from "./pages/SearchResults/SearchResults";
 import Footer from "./components/Footer/Footer";
-import ErrorPage from "./components/errorPage/errorPage";
+import ErrorPage from "./pages/errorPage/errorPage";
 import "./App.css";
 
 function AppContent() {

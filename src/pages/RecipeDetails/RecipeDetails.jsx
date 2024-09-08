@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import DetailCSS from './RecipeDetails.module.css'
-import { useFetch } from "../hook/useFetch";
+import { useFetch } from "../../components/hook/useFetch";
 
 export default function RecipeDetails(){
     const {id} = useParams();
