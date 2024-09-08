@@ -3,10 +3,9 @@
 
 footer {
     width: 100vw;
-
-    background-color: rgb(1, 22, 1);
+    background-color: var(--bg-tertiary-color);
     margin-top: 20px;
-    color: white;
+    color: var(--text-primary-color)
 }
 
 
@@ -33,7 +32,7 @@ footer {
 }
 
 .social-link{
-    color: rgb(202, 221, 185) !important;
+    color: var(--icon-link-color) !important;
 }
     .copyright-container {
     grid-column: 1 / 4;

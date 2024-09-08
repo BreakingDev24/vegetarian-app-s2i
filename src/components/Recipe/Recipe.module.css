@@ -1,18 +1,9 @@
-.recipes-container {
-    width: 90%;
-    display: flex;
-    flex-direction: column; 
-    gap: 20px; 
-    margin: 0 auto;
-    padding: 20px;
-}
 
 .recipe-card{
     width: 100%;
     display: flex;
-    background-color: rgb(53, 34, 70);
+    background-color: var(--bg-card-color);
     border-radius: 10px;
-    color: white;
     overflow: hidden;
 }
 
@@ -43,7 +34,7 @@
 .recipe-title h2 {
     margin: 0;
     font-size: 1.2em;
-    color: white;
+    color: var(--text-primary-color);
     overflow: hidden; 
     text-overflow: ellipsis; 
     display: -webkit-box; 
@@ -81,14 +72,14 @@
 .recipe-time {
     margin: 0;
     align-self: end;
-    color: rgb(161, 158, 158);
+    color: var(--text-info-color);
 }
 
 @media (min-width: 768px) {
     .summary {
         display: block;
         font-size: 0.9rem;
-        color: rgb(174, 133, 184);
+        color: var(--text-card-summary-color);
         grid-column: 1 / span 2;
         max-height: calc(1.5em * 3);
         line-height: 1.5em;
