@@ -1,26 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import DetailCSS from './RecipeDetails.module.css'
+import { useFetch } from "../hook/useFetch";
 
 export default function RecipeDetails(){
     const {id} = useParams();
-    const [recipe, setRecipe] = useState(null)
+    const apiKey = import.meta.env.VITE_API_KEY;
 
-    
-    useEffect(() => {
-        const fetchRecipeDetails = async ()=>{
-            const apiKey = import.meta.env.VITE_API_KEY
-            const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
-            const response = await fetch(url)
-            const data = await response.json()
-            setRecipe(data)
-            console.log(data)
-        };
-        fetchRecipeDetails()
-    }, [id])
+    const {data: recipe, loading, error} = useFetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`)
 
-    if(!recipe) return <p>Loading...</p>
-
+    if(loading) return <p>Loading...</p>
+    if (!recipe) return <p>Loading...</p>;
     const {title, summary, image, extendedIngredients, analyzedInstructions} = recipe
 
     return(
