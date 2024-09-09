@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export function useFetch(url, navigate) {
   const [data, setData] = useState(null);
@@ -11,35 +12,9 @@ export function useFetch(url, navigate) {
     setError(null);
 
     try {
-      const response = await fetch(url);
+      const response = await axios.get(url);
 
-      if (!response.ok) {
-        let errorMessage = "";
-        switch (response.status) {
-          case 404:
-            errorMessage =
-              "404: Recipes not found. Try looking for something else.";
-            break;
-          case 402:
-            errorMessage =
-              "402: Too many requests for today. Try again tomorrow";
-            break;
-          case 401:
-            errorMessage =
-              "401: Invalid API key. Check your API key configuration";
-            break;
-          case 500:
-            errorMessage = "500: Server error. Please try again later.";
-            break;
-          default:
-            errorMessage = `Errore sconosciuto! Status: ${response.status}`;
-            break;
-        }
-        throw new Error(errorMessage);
-      }
-
-      const result = await response.json();
-      setData(result);
+      setData(response.data);
     } catch (err) {
       setError(err.message);
       if (navigate) {
