@@ -3,6 +3,8 @@
 Vegetarian App is a project developed as part of the **Start2Impact** learning path.  
 The application allows users to search for vegetarian recipes based on an ingredient input by the user. Recipes are fetched using the **Spoonacular** API.
 
+👉 **[Live Demo](https://whatcabbage.netlify.app/)**
+
 ## Features
 
 - Search for vegetarian recipes by entering an ingredient of your choice.
