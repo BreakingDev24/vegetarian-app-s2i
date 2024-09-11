@@ -1,17 +1,9 @@
-import { useState, useEffect, useContext } from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
+import { useContext } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import {
   RecipeContext,
   RecipeProvider,
 } from "./components/context/DataRecipeProvider";
-import Recipe from "./components/Recipe/Recipe";
 import Layout from "./components/Layout/Layout";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";

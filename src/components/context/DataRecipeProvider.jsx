@@ -13,12 +13,6 @@ export function RecipeProvider({ children }) {
 
   const { data: recipes, loading, error } = useFetch(url, navigate);
 
-  //   useEffect(() => {
-  //     if (error) {
-  //       navigate("/error", { state: { message: error } });
-  //     }
-  //   }, [error, navigate]);
-
   const resetQuery = () => {
     setQuery("");
   };
