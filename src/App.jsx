@@ -13,12 +13,14 @@ import SearchResults from "./pages/SearchResults/SearchResults";
 import Footer from "./components/Footer/Footer";
 import ErrorPage from "./pages/errorPage/errorPage";
 import "./App.css";
+import useScrollToTop from "./components/hook/useScrolltoTop";
 
 function AppContent() {
   const { recipes, setQuery } = useContext(RecipeContext);
   const location = useLocation();
-
   const isErrorPage = location.pathname.startsWith("/error");
+  useScrollToTop();
+
   return (
     <>
       <Layout>
